@@ -1,0 +1,6 @@
+rootProject.name = 'openusm'
+include 'sensor'
+include 'server'
+include 'web'
+include 'ui'
+
