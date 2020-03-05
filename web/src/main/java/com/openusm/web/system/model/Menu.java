@@ -19,7 +19,7 @@ public class Menu {
     private String menuName;
     private String url;
     private String perms;
-    private Integer permType;
+    private Integer resType;
     private String icon;
     private Integer orderNum;
 }
