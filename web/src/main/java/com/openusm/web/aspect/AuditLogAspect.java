@@ -1,6 +1,8 @@
 package com.openusm.web.aspect;
 
 import com.openusm.web.annotation.Audit;
+import com.openusm.web.common.vo.Module;
+import com.openusm.web.common.vo.Operation;
 import com.openusm.web.system.model.AuditLog;
 import com.openusm.web.system.model.User;
 import com.openusm.web.system.service.AuditLogService;
@@ -41,7 +43,7 @@ public class AuditLogAspect {
                 .getRequestAttributes()).getRequest();
 
         String clientIp = IpUtils.getIpAddr(request);
-        String username = ((User) SecurityUtils.getSubject().getPrincipal()).getUsername();
+        String username = "secadmin";//((User) SecurityUtils.getSubject().getPrincipal()).getUsername();
 
         MethodSignature ms = (MethodSignature) joinPoint.getSignature();
         Method method = ms.getMethod();
@@ -49,17 +51,17 @@ public class AuditLogAspect {
         // 获得注解的操作日志类型
         Audit auditLog = method.getAnnotation(Audit.class);
 
-        String operation = auditLog.operation();
-        String module = auditLog.module();
-        String message = auditLog.message();
+        Operation operation = auditLog.opt();
+        Module module = auditLog.mod();
+        String message = auditLog.msg();
 
         AuditLog log = new AuditLog();
 
         log.setClientIp(clientIp);
         log.setCtime(new Date());
-        log.setFunModule(module);
+        log.setFunModule(module.getName());
         log.setMethod(method.getName());
-        log.setOperation(operation);
+        log.setOperation(operation.getName());
         log.setUsername(username);
         //请求的参数
         String args = joinPoint.getArgs()[0].toString();
@@ -76,7 +78,7 @@ public class AuditLogAspect {
                 .getRequestAttributes()).getRequest();
 
         String clientIp = IpUtils.getIpAddr(request);
-        String username = ((User) SecurityUtils.getSubject().getPrincipal()).getUsername();
+        String username = "secadmin";// ((User) SecurityUtils.getSubject().getPrincipal()).getUsername();
 
         MethodSignature ms = (MethodSignature) joinPoint.getSignature();
         Method method = ms.getMethod();
@@ -84,17 +86,17 @@ public class AuditLogAspect {
         // 获得注解的操作日志类型
         Audit auditLog = method.getAnnotation(Audit.class);
 
-        String operation = auditLog.operation();
-        String module = auditLog.module();
-        String message = auditLog.message();
+        Operation operation = auditLog.opt();
+        Module module = auditLog.mod();
+        String message = auditLog.msg();
 
         AuditLog log = new AuditLog();
 
         log.setClientIp(clientIp);
         log.setCtime(new Date());
-        log.setFunModule(module);
+        log.setFunModule(module.getName());
         log.setMethod(method.getName());
-        log.setOperation(operation);
+        log.setOperation(operation.getName());
         log.setUsername(username);
         //请求的参数
         String args = joinPoint.getArgs()[0].toString();

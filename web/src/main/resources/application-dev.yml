@@ -16,8 +16,8 @@ spring:
       enabled: true
   redis:
     database: 0
-    host: 192.168.2.181
-    port: 8760
+    host: 47.93.196.103
+    port: 8790
     password: 1qaz2wsx     # 密码
     timeout: 6000  # 连接超时时长（毫秒）
     jedis:

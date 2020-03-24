@@ -1,6 +1,9 @@
 package com.openusm.web.system.controller;
 
-import com.openusm.web.common.vo.RestResponse;
+import com.openusm.web.annotation.Audit;
+import com.openusm.web.common.vo.Module;
+import com.openusm.web.common.vo.Operation;
+import com.openusm.web.common.vo.R;
 import com.openusm.web.system.model.User;
 import com.openusm.web.system.service.SystemConfigService;
 import com.openusm.web.system.service.UserService;
@@ -11,13 +14,11 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author xingfu_xiaohai@163.com
@@ -35,26 +36,28 @@ public class LoginController {
      * @param password 用户密码
      * @return
      */
-    @RequestMapping(value = "/login") //method = RequestMethod.POST
-    public RestResponse userLogin(String username, String password) {
+    @Audit(mod = Module.ASSET, opt = Operation.LOGIN, msg = "登录系统")
+    @PostMapping(value = "/login")
+    public R userLogin(String username, String password) {
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 
         try {
             subject.login(token);
         } catch (UnknownAccountException e) {
-            return RestResponse.error("用户名或密码错误", 0);
+            return R.error().message("用户名或密码错误");
         } catch (LockedAccountException e) {
             String errorCount = systemConfigService.getByParamName("login_error_try_count")
                     .getParamValue();
-            return RestResponse.error("密码输入错误" + errorCount + "次，账号被锁定，请稍后重试", 0);
+            return R.error().message("密码输入错误" + errorCount + "次，账号被锁定，请稍后重试");
         } catch (ConcurrentAccessException e) {
-            return RestResponse.error("用户名或密码错误", 0);
+            return R.error().message("用户名或密码错误");
         }
 
-        return RestResponse.success(subject.getSession().getId(), 1);
+        return R.ok().data("token", subject.getSession().getId());
     }
 
+    @Audit(mod = Module.ASSET, opt = Operation.LOGIN, msg = "AJAX登录系统")
     @RequestMapping(value = "/ajaxLogin")
     public boolean saveUser() {
         User user = new User();
