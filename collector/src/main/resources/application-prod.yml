@@ -2,7 +2,7 @@ redis:
   database: 0
   host: localhost
   port: 6379
-  password: 1qaz2wsx     # 密码
+  password: openusm     # 密码
   timeout: 6000  # 连接超时时长（毫秒）
   jedis:
     pool:
@@ -15,9 +15,9 @@ redis:
       type: com.alibaba.druid.pool.DruidDataSource
       druid:
         driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/freesoc?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        url: jdbc:mysql://localhost:3306/openusm?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
         username: root
-        password: 1qaz2wsx
+        password: openusm
         initial-size: 10
         max-active: 100
         min-idle: 10
@@ -48,9 +48,9 @@ redis:
       type: com.alibaba.druid.pool.DruidDataSource
       druid:
         driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/freesoc?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        url: jdbc:mysql://localhost:3306/openusm?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
         username: root
-        password: 1qaz2wsx
+        password: openusm
         initial-size: 10
         max-active: 100
         min-idle: 10
