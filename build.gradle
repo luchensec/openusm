@@ -65,7 +65,6 @@ subprojects {
     configurations {
         //移除spring boot 默认json依赖
         all*.exclude module: 'spring-boot-starter-json'
-//        all*.exclude module: 'HikariCP'
     }
 }
 
