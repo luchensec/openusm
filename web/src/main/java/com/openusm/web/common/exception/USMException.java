@@ -5,6 +5,7 @@ package com.openusm.web.common.exception;
 
 import com.openusm.web.common.vo.ResultCodeEnum;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  *
@@ -14,6 +15,7 @@ import lombok.Data;
  *
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class USMException extends RuntimeException {
     private Integer code;
 
