@@ -50,9 +50,8 @@ public class ShiroConfigutation {
         //配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了，登出后跳转配置的loginUrl
         filterChainDefinitionMap.put("/logout", "logout");
         // 配置不会被拦截的链接 顺序判断
-        filterChainDefinitionMap.put("/static/**", "anon");
-        filterChainDefinitionMap.put("/ajaxLogin", "anon");
-        filterChainDefinitionMap.put("/favicon.ico", "anon");
+        filterChainDefinitionMap.put("/generateVerifyCode", "anon");
+        filterChainDefinitionMap.put("/common/**", "anon");
         filterChainDefinitionMap.put("/login", "anon");
         filterChainDefinitionMap.put("/**", "authc");
         //配置shiro默认登录界面地址，前后端分离中登录界面跳转应由前端路由控制，后台仅返回json数据
