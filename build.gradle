@@ -57,6 +57,9 @@ subprojects {
         // Apache Commons
         compile('org.apache.commons:commons-lang3:3.9')
         compile('org.projectlombok:lombok:1.18.12')
+        compileOnly 'org.projectlombok:lombok:1.18.12'
+        annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
         // 单元测试
         testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
         testCompile('junit:junit:4.13')
