@@ -14,9 +14,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  */
 @SpringBootApplication
-public class WebAppStart {
+public class AppStart {
     public static void main(String[] args) {
-        SpringApplication.run(WebAppStart.class, args);
+        SpringApplication.run(AppStart.class, args);
     }
 
 }
