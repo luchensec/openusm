@@ -38,7 +38,7 @@ public class LoginController {
      */
     @Audit(mod = Module.ASSET, opt = Operation.LOGIN, msg = "登录系统")
     @PostMapping(value = "/login")
-    public R userLogin(String username, String password) {
+    public R userLogin(String username, String password, String verifyCode, String csrftoken) {
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 
