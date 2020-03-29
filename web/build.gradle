@@ -1,12 +1,18 @@
 dependencies {
+    compile project(':common')
     compile('com.baomidou:mybatis-plus-boot-starter:3.3.1')
     compile('org.crazycake:shiro-redis:3.2.3')
     compile("javax.servlet:javax.servlet-api:4.0.1")
-    compile('org.apache.shiro:shiro-spring:1.5.1')
+    compile('org.apache.shiro:shiro-spring:1.5.2')
 //    compile('com.alibaba:druid-spring-boot-starter:1.1.21')
     // Mybatis
     compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:$mybatisStarterVersion")
-
+    compile("org.springframework.data:spring-data-redis:2.2.5.RELEASE")
     compile("org.springframework.boot:spring-boot-starter-aop:$springBootVersion")
-
+    compile("redis.clients:jedis:3.2.0")
 }
+
+
+//tasks.withType(JavaCompile) {
+//    options.encoding = "UTF-8"
+//}
